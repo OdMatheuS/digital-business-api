@@ -169,6 +169,7 @@ sudo docker stop $(docker ps -aq) && docker-compose up -d --build && docker-comp
 
 **Observações:**
 
+* **Caso queira testar local, utilize uma branch chamada "dev-local"**
 * **Somente é possível habilitar o GitHub Actions na criação do Web App com o SO Windows. Para Linux, deverá ser efetuado depois da criação do Recurso (Web App) através do Centro de Implantação.**
 * **Na aba Implantação, deixe o opção de Habilitar a Implantação Contínua e autorize o acesso do Azure em sua conta no GitHub.**
 * **Na aba Implantação, informe sua conta no GitHub, qual o Repositório e Branch para o Build e Deploy.**
