@@ -2,6 +2,7 @@ package br.com.plusoft.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,42 +21,40 @@ import br.com.plusoft.service.AtualizacaoSaudePubService;
 @RequestMapping("/api/atualizacoes-saude-pub")
 public class AtualizacaoSaudePubController {
 
-    private final AtualizacaoSaudePubService atualizacaoSaudePubService;
+	@Autowired
+	AtualizacaoSaudePubService atualizacaoSaudePubService;
 
-    public AtualizacaoSaudePubController(AtualizacaoSaudePubService atualizacaoSaudePubService) {
-        this.atualizacaoSaudePubService = atualizacaoSaudePubService;
-    }
+	@GetMapping
+	public ResponseEntity<List<AtualizacaoSaudePubDto>> getAllAtualizacoesSaudePub() {
+		List<AtualizacaoSaudePubDto> atualizacoesSaudePubList = atualizacaoSaudePubService.getAllAtualizacoesSaudePub();
+		return ResponseEntity.ok(atualizacoesSaudePubList);
+	}
 
-    @GetMapping
-    public ResponseEntity<List<AtualizacaoSaudePubDto>> getAllAtualizacoesSaudePub() {
-        List<AtualizacaoSaudePubDto> atualizacoesSaudePubList = atualizacaoSaudePubService.getAllAtualizacoesSaudePub();
-        return ResponseEntity.ok(atualizacoesSaudePubList);
-    }
+	@GetMapping("/{id}")
+	public ResponseEntity<AtualizacaoSaudePubDto> getAtualizacaoSaudePubById(@PathVariable Long id) {
+		AtualizacaoSaudePubDto atualizacaoSaudePub = atualizacaoSaudePubService.getAtualizacaoSaudePubById(id);
+		return ResponseEntity.ok(atualizacaoSaudePub);
+	}
 
-    @GetMapping("/{id}")
-    public ResponseEntity<AtualizacaoSaudePubDto> getAtualizacaoSaudePubById(@PathVariable Long id) {
-        AtualizacaoSaudePubDto atualizacaoSaudePub = atualizacaoSaudePubService.getAtualizacaoSaudePubById(id);
-        return ResponseEntity.ok(atualizacaoSaudePub);
-    }
+	@PostMapping
+	public ResponseEntity<AtualizacaoSaudePubDto> createAtualizacaoSaudePub(
+			@RequestBody AtualizacaoSaudePubDto atualizacaoSaudePubDto) {
+		AtualizacaoSaudePubDto createdAtualizacaoSaudePub = atualizacaoSaudePubService
+				.createAtualizacaoSaudePub(atualizacaoSaudePubDto);
+		return new ResponseEntity<>(createdAtualizacaoSaudePub, HttpStatus.CREATED);
+	}
 
-    @PostMapping
-    public ResponseEntity<AtualizacaoSaudePubDto> createAtualizacaoSaudePub(@RequestBody AtualizacaoSaudePubDto atualizacaoSaudePubDto) {
-        AtualizacaoSaudePubDto createdAtualizacaoSaudePub = atualizacaoSaudePubService.createAtualizacaoSaudePub(atualizacaoSaudePubDto);
-        return new ResponseEntity<>(createdAtualizacaoSaudePub, HttpStatus.CREATED);
-    }
+	@PutMapping("/{id}")
+	public ResponseEntity<AtualizacaoSaudePubDto> updateAtualizacaoSaudePub(@PathVariable Long id,
+			@RequestBody AtualizacaoSaudePubDto atualizacaoSaudePubDto) {
+		AtualizacaoSaudePubDto updatedAtualizacaoSaudePub = atualizacaoSaudePubService.updateAtualizacaoSaudePub(id,
+				atualizacaoSaudePubDto);
+		return ResponseEntity.ok(updatedAtualizacaoSaudePub);
+	}
 
-    @PutMapping("/{id}")
-    public ResponseEntity<AtualizacaoSaudePubDto> updateAtualizacaoSaudePub(
-            @PathVariable Long id,
-            @RequestBody AtualizacaoSaudePubDto atualizacaoSaudePubDto
-    ) {
-        AtualizacaoSaudePubDto updatedAtualizacaoSaudePub = atualizacaoSaudePubService.updateAtualizacaoSaudePub(id, atualizacaoSaudePubDto);
-        return ResponseEntity.ok(updatedAtualizacaoSaudePub);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteAtualizacaoSaudePub(@PathVariable Long id) {
-        atualizacaoSaudePubService.deleteAtualizacaoSaudePub(id);
-        return ResponseEntity.noContent().build();
-    }
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> deleteAtualizacaoSaudePub(@PathVariable Long id) {
+		atualizacaoSaudePubService.deleteAtualizacaoSaudePub(id);
+		return ResponseEntity.noContent().build();
+	}
 }
