@@ -83,4 +83,12 @@ public class AtualizacaoSaudePub {
 		this.usuarios = usuarios;
 	}
 
+	public List<UsuarioEntity> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(List<UsuarioEntity> usuarios) {
+		this.usuarios = usuarios;
+	}
+
 }

@@ -22,12 +22,12 @@ import br.com.plusoft.dto.AtualizarUsuarioDto;
 import br.com.plusoft.dto.CadastroUsuarioDto;
 import br.com.plusoft.dto.ListarUsuarioDto;
 import br.com.plusoft.entity.UsuarioEntity;
-import br.com.plusoft.servive.UsuarioService;
+import br.com.plusoft.service.UsuarioService;
 import jakarta.validation.Valid;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("usuarios")
+@RequestMapping("/api/usuarios")
 public class UsuarioController {
 
 	@Autowired

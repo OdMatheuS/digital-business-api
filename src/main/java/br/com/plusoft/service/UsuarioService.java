@@ -1,4 +1,4 @@
-package br.com.plusoft.servive;
+package br.com.plusoft.service;
 
 import java.util.List;
 import java.util.Optional;
