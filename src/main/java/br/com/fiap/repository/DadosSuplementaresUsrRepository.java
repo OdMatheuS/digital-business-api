@@ -6,8 +6,6 @@ import org.springframework.stereotype.Repository;
 import br.com.fiap.entity.DadosSupleUsr;
 
 @Repository
-public interface DadosSuplementaresUsr extends JpaRepository<DadosSuplementaresUsr, Long> {
-
-	DadosSupleUsr save(DadosSupleUsr dadosSupleUsr);
+public interface DadosSuplementaresUsrRepository extends JpaRepository<DadosSupleUsr, Long> {
 
 }

@@ -26,8 +26,7 @@ public class AtualizacaoSaudePub {
 	private LocalDate dtInfoSaude;
 
 	@ManyToMany(mappedBy = "atualizacoesSaudePub")
-	@JoinColumn(name = "usuario_id")
-	private List<UsuarioEntity> usuarios;
+		private List<UsuarioEntity> usuarios;
 
 	public AtualizacaoSaudePub() {
 		super();

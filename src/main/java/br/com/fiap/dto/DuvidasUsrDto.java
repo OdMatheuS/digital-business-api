@@ -1,6 +1,9 @@
 package br.com.fiap.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class DuvidasUsrDto {
+	@JsonIgnore
 	private Long id;
 	private String pergunta;
 	private String resposta;
