@@ -1,7 +1,7 @@
 package br.com.plusoft.entity;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Set;
 
 import br.com.plusoft.dto.CadastroUsuarioDto;
 import jakarta.persistence.Column;
@@ -9,7 +9,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -40,14 +42,12 @@ public class UsuarioEntity {
 	@Column(name = "DATA_CADASTRO")
 	private LocalDate dataCadastro;
 
-	@OneToMany(mappedBy = "usuario")
-	private List<AvaliacaoUsuarioEntity> avaliacoes;
-
-	@OneToMany(mappedBy = "usuario")
-	private List<SoftwareGestaoEntity> softwares;
-
 	@Column(name = "ATIVO", columnDefinition = "BIT")
 	private boolean ativo;
+
+	@ManyToMany
+	@JoinTable(name = "USUARIO_ATUALIZACAO_SAUDE_PUB", joinColumns = @JoinColumn(name = "ID_USUARIO"), inverseJoinColumns = @JoinColumn(name = "ID_ATUALIZACAO_SAUDE_PUB"))
+	private Set<AtualizacaoSaudePub> atualizacoesSaudePub;
 
 	public UsuarioEntity(CadastroUsuarioDto dados) {
 		this.ativo = true;
@@ -58,7 +58,7 @@ public class UsuarioEntity {
 	}
 
 	public UsuarioEntity(Long id, String nome, String sobrenome, String email, String senha, LocalDate dataCadastro,
-			List<AvaliacaoUsuarioEntity> avaliacoes, List<SoftwareGestaoEntity> softwares, boolean ativo) {
+			boolean ativo) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -66,8 +66,6 @@ public class UsuarioEntity {
 		this.email = email;
 		this.senha = senha;
 		this.dataCadastro = dataCadastro;
-		this.avaliacoes = avaliacoes;
-		this.softwares = softwares;
 		this.ativo = ativo;
 	}
 
@@ -122,22 +120,6 @@ public class UsuarioEntity {
 
 	public void setDataCadastro(LocalDate dataCadastro) {
 		this.dataCadastro = dataCadastro;
-	}
-
-	public List<AvaliacaoUsuarioEntity> getAvaliacoes() {
-		return avaliacoes;
-	}
-
-	public void setAvaliacoes(List<AvaliacaoUsuarioEntity> avaliacoes) {
-		this.avaliacoes = avaliacoes;
-	}
-
-	public List<SoftwareGestaoEntity> getSoftwares() {
-		return softwares;
-	}
-
-	public void setSoftwares(List<SoftwareGestaoEntity> softwares) {
-		this.softwares = softwares;
 	}
 
 	public boolean isAtivo() {
