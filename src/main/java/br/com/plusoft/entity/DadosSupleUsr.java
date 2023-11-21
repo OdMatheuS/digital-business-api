@@ -1,9 +1,12 @@
 package br.com.plusoft.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -21,6 +24,9 @@ public class DadosSupleUsr {
 	private char sexo;
 
 	private int idade;
+	
+	 @OneToOne(mappedBy = "dadosSupleUsr", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	    private UsuarioEntity usuarioEntity;
 
 	public DadosSupleUsr() {
 		super();

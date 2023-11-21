@@ -1,17 +1,22 @@
 package br.com.plusoft.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 import br.com.plusoft.dto.CadastroUsuarioDto;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -44,6 +49,19 @@ public class UsuarioEntity {
 
 	@Column(name = "ATIVO", columnDefinition = "BIT")
 	private boolean ativo;
+
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "ID_DADOS_SUPLE_USR")
+	private DadosSupleUsr dadosSupleUsr;
+
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<InfoSaudeUsr> infoSaudeList;
+
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<DuvidasUsr> DuvidasUsrList;
+
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<SugestoesSaude> SugestoesSaude;
 
 	@ManyToMany
 	@JoinTable(name = "USUARIO_ATUALIZACAO_SAUDE_PUB", joinColumns = @JoinColumn(name = "ID_USUARIO"), inverseJoinColumns = @JoinColumn(name = "ID_ATUALIZACAO_SAUDE_PUB"))
