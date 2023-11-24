@@ -24,21 +24,85 @@ public class DadosSupleUsr {
 	private char sexo;
 
 	private int idade;
-	
-	 @OneToOne(mappedBy = "dadosSupleUsr", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	    private UsuarioEntity usuarioEntity;
+
+	private Double imc;
+
+	private String habitosSaude;
+	private String nome;
+
+	private String alimentacaoSaude;
+
+	private String tempoSono;
+
+	@OneToOne(mappedBy = "dadosSupleUsr", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private UsuarioEntity usuarioEntity;
 
 	public DadosSupleUsr() {
 		super();
 	}
 
-	public DadosSupleUsr(Long id, Double altura, Double peso, char sexo, int idade) {
+	public DadosSupleUsr(Long id, Double altura, Double peso, char sexo, int idade, Double imc, String habitosSaude,
+			String nome, String alimentacaoSaude, String tempoSono, UsuarioEntity usuarioEntity) {
 		super();
 		this.id = id;
 		this.altura = altura;
 		this.peso = peso;
 		this.sexo = sexo;
 		this.idade = idade;
+		this.imc = imc;
+		this.habitosSaude = habitosSaude;
+		this.nome = nome;
+		this.alimentacaoSaude = alimentacaoSaude;
+		this.tempoSono = tempoSono;
+		this.usuarioEntity = usuarioEntity;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getHabitosSaude() {
+		return habitosSaude;
+	}
+
+	public void setHabitosSaude(String habitosSaude) {
+		this.habitosSaude = habitosSaude;
+	}
+
+	public String getAlimentacaoSaude() {
+		return alimentacaoSaude;
+	}
+
+	public void setAlimentacaoSaude(String alimentacaoSaude) {
+		this.alimentacaoSaude = alimentacaoSaude;
+	}
+
+	public String getTempoSono() {
+		return tempoSono;
+	}
+
+	public void setTempoSono(String tempoSono) {
+		this.tempoSono = tempoSono;
+	}
+
+	public UsuarioEntity getUsuarioEntity() {
+		return usuarioEntity;
+	}
+
+	public void setUsuarioEntity(UsuarioEntity usuarioEntity) {
+		this.usuarioEntity = usuarioEntity;
+	}
+
+	public Double getImc() {
+		return imc;
+	}
+
+	public void setImc(Double imc) {
+		this.imc = imc;
 	}
 
 	public Long getId() {

@@ -3,11 +3,17 @@ package br.com.fiap.dto;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class AtualizacaoSaudePubDto {
 
 	private Long id;
 	private String titulo;
 	private String descricao;
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dtInfoSaude;
 	private List<Long> usuarioIds;
 

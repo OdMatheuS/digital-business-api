@@ -6,18 +6,79 @@ public class DadosSupleUsrDto {
 	private Double peso;
 	private char sexo;
 	private int idade;
+	private Double imc;
+	private String habitosSaude;
+	private String nome;
+
+	private String alimentacaoSaude;
+
+	private String tempoSono;
 
 	public DadosSupleUsrDto() {
 		super();
 	}
 
-	public DadosSupleUsrDto(Long id, Double altura, Double peso, char sexo, int idade) {
+	
+
+	public DadosSupleUsrDto(Long id, Double altura, Double peso, char sexo, int idade, Double imc, String habitosSaude,
+			String nome, String alimentacaoSaude, String tempoSono) {
 		super();
 		this.id = id;
 		this.altura = altura;
 		this.peso = peso;
 		this.sexo = sexo;
 		this.idade = idade;
+		this.imc = imc;
+		this.habitosSaude = habitosSaude;
+		this.nome = nome;
+		this.alimentacaoSaude = alimentacaoSaude;
+		this.tempoSono = tempoSono;
+	}
+
+
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+
+
+	public String getNome() {
+		return nome;
+	}
+
+
+
+	public String getHabitosSaude() {
+		return habitosSaude;
+	}
+
+	public void setHabitosSaude(String habitosSaude) {
+		this.habitosSaude = habitosSaude;
+	}
+
+	public String getAlimentacaoSaude() {
+		return alimentacaoSaude;
+	}
+
+	public void setAlimentacaoSaude(String alimentacaoSaude) {
+		this.alimentacaoSaude = alimentacaoSaude;
+	}
+
+	public String getTempoSono() {
+		return tempoSono;
+	}
+
+	public void setTempoSono(String tempoSono) {
+		this.tempoSono = tempoSono;
+	}
+
+	public Double getImc() {
+		return imc;
+	}
+
+	public void setImc(Double imc) {
+		this.imc = imc;
 	}
 
 	public Long getId() {

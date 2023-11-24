@@ -40,6 +40,8 @@ public class DadosSupleUsrController {
 
 	@PostMapping
 	public ResponseEntity<DadosSupleUsrDto> createDadosSupleUsr(@RequestBody DadosSupleUsrDto dadosSupleUsrDto) {
+		Double imc = dadosSupleUsrService.calcularImc(dadosSupleUsrDto.getPeso(), dadosSupleUsrDto.getAltura());
+		dadosSupleUsrDto.setImc(imc);
 		DadosSupleUsrDto createdDadosSupleUsr = dadosSupleUsrService.createDadosSupleUsr(dadosSupleUsrDto);
 		return new ResponseEntity<>(createdDadosSupleUsr, HttpStatus.CREATED);
 	}
@@ -47,6 +49,8 @@ public class DadosSupleUsrController {
 	@PutMapping("/{id}")
 	public ResponseEntity<DadosSupleUsrDto> updateDadosSupleUsr(@PathVariable Long id,
 			@RequestBody DadosSupleUsrDto dadosSupleUsrDto) {
+		Double imc = dadosSupleUsrService.calcularImc(dadosSupleUsrDto.getPeso(), dadosSupleUsrDto.getAltura());
+		dadosSupleUsrDto.setImc(imc);
 		DadosSupleUsrDto updatedDadosSupleUsr = dadosSupleUsrService.updateDadosSupleUsr(id, dadosSupleUsrDto);
 		return ResponseEntity.ok(updatedDadosSupleUsr);
 	}

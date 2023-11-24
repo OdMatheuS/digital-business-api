@@ -59,4 +59,8 @@ public class DadosSupleUsrService {
 		return dadosSupleUsr;
 	}
 
+	public Double calcularImc(Double peso, Double altura) {
+		return peso / ((altura / 100) * (altura / 100));
+	}
+
 }
